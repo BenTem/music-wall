@@ -1,0 +1,26 @@
+<h1>Song List</h1>
+
+<% @songs.each do |song| %>
+  <div class="song">
+    <h3> 
+      <% if @current_user %>
+      <form action='/songs/<%= song.id %>/upvote' method='POST'>
+        <button type='submit' >Vote</button>
+      </form>
+      <% end %>
+      <a href="/songs/<%= song.id %>"><%= song.song_title %></a> 
+      <small> - <%= song.author %> - <a href="<%= song.url %>"><%= song.url %></a> </small>
+      <p>Number of upvotes: <%= song.upvotes %> </p>
+    </h3>  
+  </div>
+    
+<% end %>
+
+<hr/>
+
+<% if @current_user %>
+  <a href="/songs/new">Post a song.</a><br /><br />
+  <p><small>Logged in as <%= @current_user %></small></p>
+<% else %>
+  <a href="/login">Please log in to post.</a>
+<% end %>

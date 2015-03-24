@@ -1,0 +1,28 @@
+<h2><%= @song.song_title %></h2>
+
+<p>
+  Author: <%= @song.author %>
+</p>
+
+<a href="<%= @song.url %>"><%= @song.url %></a>
+
+<p>Posted by <%= User.where(id: @song.user_id ).first.username %></p>
+
+
+<p>
+  Other songs by this artist:
+</p>
+
+<% posts = Song.where( author: @song.author ) %>
+
+<% posts.each do |song| %>
+
+  <div class="song">
+    <h3><a href="/songs/<%= song.id %>"> <%= song.song_title %> </a> </h3>
+  </div>
+<% end %>
+
+
+<hr/>
+<a href="/songs">Back to All Songs</a>
+<p><small>Logged in as <%= @current_user %></small></p>

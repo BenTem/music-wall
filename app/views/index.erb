@@ -1,1 +1,16 @@
 <h1>Home Pagerino</h1>
+
+<% if @current_user %>
+    You are logged in as <%= @current_user %>.<br /><br />
+<% end %>
+
+<% if @message %>
+    <%= @message %><br /><br />
+<% end %>
+
+<hr/>
+<a href="/songs">view song list.</a>
+
+<form action='/logout'>
+    <input type="submit" name="submit" value="Log out" />
+</form>
